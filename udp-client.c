@@ -42,6 +42,9 @@
 #include "tiny-AES-c/aes.h"
 #include "tiny-AES-c/aes.c"
 
+#include "sys/etimer .h"
+#include "sys/ctimer.h"
+
 #define CBC 1
 #define CTR 1
 #define ECB 1
@@ -115,10 +118,16 @@ send_packet(void *ptr)
     struct AES_ctx ctx;
 
     AES_init_ctx(&ctx, key);
+
+    time start = RTIMERNOW();
     AES_ECB_encrypt(&ctx, in);
+    time stop = RTIMERNOW() ;
 
     printf("ECB encrypt: ");
 
+    printf(”START: %lu\n”, time start);
+    printf(”STOP: %lu\n”, time stop);
+    
     if (0 == memcmp((char*) out, (char*) in, 16)) {
         printf("SUCCESS!\n");
     } else {
