@@ -46,8 +46,8 @@
 #include "../../../core/sys/ctimer.h"
 #include "sys/clock.h"
 
-//#define USE_CBC 1
-#define USE_CTR 1
+#define USE_CBC 1
+//#define USE_CTR 1
 //#define USE_ECB 1
 
 #define UDP_CLIENT_PORT 8765
@@ -133,7 +133,7 @@ send_packet(void *ptr)
     AES_CTR_xcrypt_buffer(&ctx, in, 64);
 #else
     AES_init_ctx_iv(&ctx, key, iv);
-    AES_CBC_encrypt_buffer(&ctx, in, 64)
+    AES_CBC_encrypt_buffer(&ctx, in, 64);
 #endif
     time_stop = RTIMER_NOW();
     cycles = time_stop - time_start;
