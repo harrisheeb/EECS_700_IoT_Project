@@ -120,9 +120,9 @@ send_packet(void *ptr)
     unsigned long time_start;
     unsigned long time_stop;
 
-    time_start = RTIMERNOW();
+    time_start = RTIMER_NOW();
     AES_ECB_encrypt(&ctx, in);
-    time_stop = RTIMERNOW() ;
+    time_stop = RTIMER_NOW();
 
     printf("ECB encrypt: ");
 
