@@ -44,8 +44,8 @@
 #define DEBUG DEBUG_PRINT
 #include "net/uip-debug.h"
 
-//#define USE_CBC 1
-#define USE_CTR 1
+#define USE_CBC 1
+//#define USE_CTR 1
 //#define USE_ECB 1
 
 #define UIP_IP_BUF   ((struct uip_ip_hdr *)&uip_buf[UIP_LLH_LEN])
