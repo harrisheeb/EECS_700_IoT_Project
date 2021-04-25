@@ -42,7 +42,7 @@
 #include "tiny-AES-c/aes.h"
 #include "tiny-AES-c/aes.c"
 
-#include "../../../core/sys/etimer .h"
+#include "../../../core/sys/etimer.h"
 #include "../../../core/sys/ctimer.h"
 
 #define CBC 1
