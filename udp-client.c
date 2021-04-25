@@ -44,6 +44,8 @@
 
 #include "../../../core/sys/etimer.h"
 #include "../../../core/sys/ctimer.h"
+#include "cpu/cc26xx-cc13xx/clock.c"
+#include "sys/clock.h"
 
 #define CBC 1
 #define CTR 1
