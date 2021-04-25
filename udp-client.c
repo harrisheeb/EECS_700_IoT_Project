@@ -153,6 +153,7 @@ send_packet(void *ptr)
   sprintf(buf, str, seq_id);
   uip_udp_packet_sendto(client_conn, buf, strlen(buf),
                         &server_ipaddr, UIP_HTONS(UDP_SERVER_PORT));
+  printf("did it");
 }
 /*---------------------------------------------------------------------------*/
 static void
