@@ -84,10 +84,8 @@ tcpip_handler(void)
     AES_init_ctx_iv(&ctx, key, iv);
     AES_CTR_xcrypt_buffer(&ctx, in, 16);
 #else
-    printf("happening\n");
     AES_init_ctx_iv(&ctx, key, iv);
     AES_CBC_decrypt_buffer(&ctx, in, 16);
-    printf("happened\n");
 #endif
 
 
@@ -103,6 +101,7 @@ tcpip_handler(void)
     int i;
     char* m_string;
     m_string = (char*)in;
+    printf("%s", m_string);
     for(i = 16; i < 33; i++){
       m_string[i] = ' ';
     }
