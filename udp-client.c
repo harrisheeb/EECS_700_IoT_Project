@@ -125,8 +125,8 @@ send_packet(void *ptr)
 
     printf("ECB encrypt: ");
 
-    printf(”START: %lu\n”, time start);
-    printf(”STOP: %lu\n”, time stop);
+    printf("START: %lu\n", time start);
+    printf("STOP: %lu\n", time stop);
 
     if (0 == memcmp((char*) out, (char*) in, 16)) {
         printf("SUCCESS!\n");
