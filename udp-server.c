@@ -85,7 +85,7 @@ tcpip_handler(void)
     AES_CTR_xcrypt_buffer(&ctx, in, 64);
 #else
     AES_init_ctx_iv(&ctx, key, iv);
-    AES_CBC_decrypt_buffer(&ctx, in, 64)
+    AES_CBC_decrypt_buffer(&ctx, in, 64);
 #endif
 
 
