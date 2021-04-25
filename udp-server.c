@@ -87,8 +87,9 @@ tcpip_handler(void)
     int i;
     char* m_string;
     m_string = (char*)in;
+    
     for(i = 0; i < 16; i++){
-      printf('%c', m_string[i]);
+      printf('h%c', m_string[i]);
     }
 
 
