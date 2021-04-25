@@ -41,6 +41,7 @@
 #include <string.h>
 #include "tiny-AES-c/aes.h"
 #include "tiny-AES-c/aes.c"
+#include "ti-lib.h"
 
 #include "../../../core/sys/etimer.h"
 #include "../../../core/sys/ctimer.h"
@@ -94,10 +95,8 @@ tcpip_handler(void)
 
     if (0 == memcmp((char*) out, (char*) in, 16)) {
         printf("SUCCESS!\n");
-        return(0);
     } else {
         printf("FAILURE!\n");
-        return(1);
     }
 
         
