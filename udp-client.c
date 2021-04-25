@@ -121,15 +121,19 @@ send_packet(void *ptr)
     AES_init_ctx(&ctx, key);
     unsigned long time_start;
     unsigned long time_stop;
+    unsigned long cycles;
 
     time_start = RTIMER_NOW();
     AES_ECB_encrypt(&ctx, in);
     time_stop = RTIMER_NOW();
+    cycles = time_stop - time_start;
 
     printf("ECB encrypt: \n");
 
     printf("START: %lu\n", time_start);
     printf("STOP: %lu\n", time_stop);
+    printf("STOP: %lu\n", cycles);
+
 
     if (0 == memcmp((char*) out, (char*) in, 16)) {
         printf("SUCCESS!\n");
