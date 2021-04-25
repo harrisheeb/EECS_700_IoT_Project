@@ -65,7 +65,7 @@
 #define START_INTERVAL		(15 * CLOCK_SECOND)
 #define SEND_INTERVAL		(PERIOD * CLOCK_SECOND)
 #define SEND_TIME		(random_rand() % (SEND_INTERVAL))
-#define MAX_PAYLOAD_LEN		64
+#define MAX_PAYLOAD_LEN		30
 
 static struct uip_udp_conn *client_conn;
 static uip_ipaddr_t server_ipaddr;
@@ -130,10 +130,10 @@ send_packet(void *ptr)
     AES_ECB_encrypt(&ctx, in);
 #elif defined(USE_CTR)
     AES_init_ctx_iv(&ctx, key, iv);
-    AES_CTR_xcrypt_buffer(&ctx, in, 64);
+    AES_CTR_xcrypt_buffer(&ctx, in, 16);
 #else
     AES_init_ctx_iv(&ctx, key, iv);
-    AES_CBC_encrypt_buffer(&ctx, in, 64);
+    AES_CBC_encrypt_buffer(&ctx, in, 16);
 #endif
     time_stop = RTIMER_NOW();
     cycles = time_stop - time_start;

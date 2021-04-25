@@ -82,11 +82,11 @@ tcpip_handler(void)
     AES_ECB_decrypt(&ctx, in);
 #elif defined(USE_CTR)
     AES_init_ctx_iv(&ctx, key, iv);
-    AES_CTR_xcrypt_buffer(&ctx, in, 64);
+    AES_CTR_xcrypt_buffer(&ctx, in, 16);
 #else
     printf("happening\n");
     AES_init_ctx_iv(&ctx, key, iv);
-    AES_CBC_decrypt_buffer(&ctx, in, 64);
+    AES_CBC_decrypt_buffer(&ctx, in, 16);
     printf("happened\n");
 #endif
 
