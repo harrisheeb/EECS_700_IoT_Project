@@ -85,8 +85,10 @@ tcpip_handler(void)
 
     printf("decrypted message: ");
     int i;
+    char* m_string;
+    m_string = (char*)in;
     for(i = 0; i < 16; i++){
-      printf('%s', (char)in[i]);
+      printf('%c', m_string[i]);
     }
 
 
