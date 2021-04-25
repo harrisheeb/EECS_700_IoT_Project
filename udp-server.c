@@ -44,6 +44,10 @@
 #define DEBUG DEBUG_PRINT
 #include "net/uip-debug.h"
 
+//#define USE_CBC 1
+#define USE_CTR 1
+//#define USE_ECB 1
+
 #define UIP_IP_BUF   ((struct uip_ip_hdr *)&uip_buf[UIP_LLH_LEN])
 
 #define UDP_CLIENT_PORT	8765
@@ -70,10 +74,20 @@ tcpip_handler(void)
 
     uint8_t key[] = { 0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c };
     uint8_t out[]   = { 'h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd', '!', '!', '!', '!', '!'};
+    uint8_t iv[16]  = { 0xf0, 0xf1, 0xf2, 0xf3, 0xf4, 0xf5, 0xf6, 0xf7, 0xf8, 0xf9, 0xfa, 0xfb, 0xfc, 0xfd, 0xfe, 0xff };
     struct AES_ctx ctx;
     uint8_t* in = (uint8_t*)appdata;
+#if defined(USE_ECB)
     AES_init_ctx(&ctx, key);
     AES_ECB_decrypt(&ctx, in);
+#elif defined(USE_CTR)
+    AES_init_ctx_iv(&ctx, key, iv);
+    AES_CTR_xcrypt_buffer(&ctx, in, 64);
+#else
+    AES_init_ctx_iv(&ctx, key, iv);
+    AES_CBC_decrypt_buffer(&ctx, in, 64)
+#endif
+
 
     printf("ECB decrypt: ");
 
