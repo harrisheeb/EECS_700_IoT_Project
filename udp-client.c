@@ -47,8 +47,8 @@
 #include "sys/clock.h"
 
 //#define USE_CBC 1
-//#define USE_CTR 1
-#define USE_ECB 1
+#define USE_CTR 1
+//#define USE_ECB 1
 
 #define UDP_CLIENT_PORT 8765
 #define UDP_SERVER_PORT 5678
