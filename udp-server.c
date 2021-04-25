@@ -88,7 +88,7 @@ tcpip_handler(void)
     char* m_string;
     m_string = (char*)in;
     for(i = 16; i < 30; i++){
-      m_string[i] = '.'
+      m_string[i] = '.';
     }
     printf("%s", m_string);
 
