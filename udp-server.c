@@ -92,7 +92,6 @@ tcpip_handler(void)
     int i;
     char* m_string;
     m_string = (char*)in;
-    printf("%s", m_string);
     for(i = 16; i < 33; i++){
       m_string[i] = ' ';
     }
