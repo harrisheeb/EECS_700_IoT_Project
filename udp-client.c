@@ -116,7 +116,7 @@ send_packet(void *ptr)
   //uint8_t in[]  = { 0x6b, 0xc1, 0xbe, 0xe2, 0x2e, 0x40, 0x9f, 0x96, 0xe9, 0x3d, 0x7e, 0x11, 0x73, 0x93, 0x17, 0x2a };
     struct AES_ctx ctx;
     char* myString = "hello there! how is it going?";
-    uint8_t in[] = (uint8_t *) myString;
+    uint8_t * in = (uint8_t *) myString;
 
     AES_init_ctx(&ctx, key);
     unsigned long time_start;
