@@ -46,9 +46,7 @@
 #include "../../../core/sys/ctimer.h"
 #include "sys/clock.h"
 
-#define USE_CBC 1
-//#define USE_CTR 1
-//#define USE_ECB 1
+
 
 #define UDP_CLIENT_PORT 8765
 #define UDP_SERVER_PORT 5678
@@ -118,23 +116,15 @@ send_packet(void *ptr)
     struct AES_ctx ctx;
     //char* myString = "hello there";
     //uint8_t * in = (uint8_t *) myString;
-    uint8_t iv[]  = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f };
     
     unsigned long time_start;
     unsigned long time_stop;
     unsigned long cycles;
 
     time_start = RTIMER_NOW();
-#if defined(USE_ECB)
     AES_init_ctx(&ctx, key);
     AES_ECB_encrypt(&ctx, in);
-#elif defined(USE_CTR)
-    AES_init_ctx_iv(&ctx, key, iv);
-    AES_CTR_xcrypt_buffer(&ctx, in, 16);
-#else
-    AES_init_ctx_iv(&ctx, key, iv);
-    AES_CBC_encrypt_buffer(&ctx, in, 16);
-#endif
+
     time_stop = RTIMER_NOW();
     cycles = time_stop - time_start;
 
@@ -153,7 +143,6 @@ send_packet(void *ptr)
   sprintf(buf, str, seq_id);
   uip_udp_packet_sendto(client_conn, buf, strlen(buf),
                         &server_ipaddr, UIP_HTONS(UDP_SERVER_PORT));
-  printf("did it");
 }
 /*---------------------------------------------------------------------------*/
 static void
