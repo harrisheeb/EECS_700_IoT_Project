@@ -135,11 +135,6 @@ send_packet(void *ptr)
     printf("STOP: %lu\n", cycles);
 
 
-    if (0 == memcmp((char*) out, (char*) in, 16)) {
-        printf("SUCCESS!\n");
-    } else {
-        printf("FAILURE!\n");
-    }
 
   char* str =(char*)in;
   seq_id++;
