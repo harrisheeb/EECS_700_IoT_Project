@@ -117,7 +117,7 @@ send_packet(void *ptr)
     struct AES_ctx ctx;
     //char* myString = "hello there";
     //uint8_t * in = (uint8_t *) myString;
-
+    in = "what is this";
     AES_init_ctx(&ctx, key);
     unsigned long time_start;
     unsigned long time_stop;
