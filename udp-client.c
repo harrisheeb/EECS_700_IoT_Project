@@ -41,7 +41,6 @@
 #include <string.h>
 #include "tiny-AES-c/aes.h"
 #include "tiny-AES-c/aes.c"
-#include "ti-lib.h"
 
 #include "../../../core/sys/etimer.h"
 #include "../../../core/sys/ctimer.h"
@@ -118,10 +117,12 @@ send_packet(void *ptr)
     struct AES_ctx ctx;
 
     AES_init_ctx(&ctx, key);
-
-    time start = RTIMERNOW();
+    unsigned long time_start;
+    unsigned long time_stop;
+    
+    time_start = RTIMERNOW();
     AES_ECB_encrypt(&ctx, in);
-    time stop = RTIMERNOW() ;
+    time_stop = RTIMERNOW() ;
 
     printf("ECB encrypt: ");
 
