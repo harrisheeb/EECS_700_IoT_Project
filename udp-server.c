@@ -83,6 +83,7 @@ tcpip_handler(void)
         printf("FAILURE!\n");
     }
 
+    printf("decrypted message: '%s'", (char*)in)
 
 
     PRINTF("\n");
