@@ -65,7 +65,7 @@ tcpip_handler(void)
     appdata = (char *)uip_appdata;
     appdata[uip_datalen()] = 0;
     PRINTF("DATA recv '%s' from ", appdata);
-    PRINTF("%d",
+    PRINTF("%d\n",
            UIP_IP_BUF->srcipaddr.u8[sizeof(UIP_IP_BUF->srcipaddr.u8) - 1]);
 
     uint8_t key[] = { 0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c };
@@ -83,7 +83,11 @@ tcpip_handler(void)
         printf("FAILURE!\n");
     }
 
-    printf("decrypted message: '%s'", (char*)in);
+    printf("decrypted message: ");
+    int i;
+    for(i = 0; i < 16; i++){
+      printf('%s', (char)in[i]);
+    }
 
 
     PRINTF("\n");
