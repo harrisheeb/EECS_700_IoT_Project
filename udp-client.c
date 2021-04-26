@@ -92,7 +92,7 @@ static void test_time(){
     unsigned long time_start;
     unsigned long time_stop;
     unsigned long cycles;
-
+    struct AES_ctx ctx;
 
 
     const uint8_t SIZE = 16 ∗ 7; // 128 bytes , 1024 bits
@@ -104,6 +104,7 @@ static void test_time(){
     uint8_t in [2048] = {0};
     uint8_t out[2048] = {0};
 
+    AES_init_ctx(&ctx, key);
 
 
     printf ("Size : %d\n", PAYLOADSIZE) ;
@@ -114,7 +115,7 @@ static void test_time(){
 
     uint16_t TRIALS = 100;
     for(int i = 0; i < TRIALS; i++){
-        AES_CBC_encrypt_buffer(out, in, SIZE, key, iv);
+        AES_CBC_encrypt_buffer(&ctx, in, SIZE);
     }
 
     time_stop = RTIMERNOW() ;
@@ -182,8 +183,10 @@ send_packet(void *ptr)
     unsigned long time_stop;
     unsigned long cycles;
 
-    time_start = RTIMER_NOW();
+    
     AES_init_ctx(&ctx, key);
+
+    time_start = RTIMER_NOW();
     AES_ECB_encrypt(&ctx, in);
 
     time_stop = RTIMER_NOW();
