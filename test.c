@@ -195,10 +195,10 @@ static int test_encrypt_ecb(void)
     time_start = (double) _rdtsc();
     AES_ECB_encrypt(&ctx, in);
 
-    printf("ECB encrypt: ");
+    printf("ECB encrypt: \n");
 
     time_stop = (double) _rdtsc();
-    cycles = ((double)time_stop - time_start);
+    cycles = (time_stop - time_start);
     printf("START: %lu\n", time_start);
     printf("STOP: %lu\n", time_stop);
     printf ("CYCLES: %lu\n", cycles) ;
@@ -252,10 +252,10 @@ static int test_decrypt_cbc(void)
     time_start = (double) _rdtsc();
     AES_CBC_decrypt_buffer(&ctx, in, 64);
 
-    printf("CBC decrypt: ");
+    printf("CBC decrypt: \n");
 
     time_stop = (double) _rdtsc();
-    cycles = ((double)time_stop - time_start);
+    cycles = (time_stop - time_start);
     printf("START: %lu\n", time_start);
     printf("STOP: %lu\n", time_stop);
     printf ("CYCLES: %lu\n", cycles) ;
@@ -307,10 +307,10 @@ static int test_encrypt_cbc(void)
     time_start = (double) _rdtsc();
     AES_CBC_encrypt_buffer(&ctx, in, 64);
 
-    printf("CBC encrypt: ");
+    printf("CBC encrypt: \n");
 
     time_stop = (double) _rdtsc();
-    cycles = ((double)time_stop - time_start);
+    cycles = (time_stop - time_start);
     printf("START: %lu\n", time_start);
     printf("STOP: %lu\n", time_stop);
     printf ("CYCLES: %lu\n", cycles) ;
@@ -374,10 +374,10 @@ static int test_xcrypt_ctr(const char* xcrypt)
     time_start = (double) _rdtsc();
     AES_CTR_xcrypt_buffer(&ctx, in, 64);
   
-    printf("CTR %s: ", xcrypt);
+    printf("CTR %s: \n", xcrypt);
 
     time_stop = (double) _rdtsc();
-    cycles = ((double)time_stop - time_start);
+    cycles = (time_stop - time_start);
     printf("START: %lu\n", time_start);
     printf("STOP: %lu\n", time_stop);
     printf ("CYCLES: %lu\n", cycles) ;
@@ -419,10 +419,10 @@ static int test_decrypt_ecb(void)
     time_start = (double) _rdtsc();
     AES_ECB_decrypt(&ctx, in);
 
-    printf("ECB decrypt: ");
+    printf("ECB decrypt: \n");
 
     time_stop = (double) _rdtsc();
-    cycles = ((double)time_stop - time_start);
+    cycles = (time_stop - time_start);
     printf("START: %lu\n", time_start);
     printf("STOP: %lu\n", time_stop);
     printf ("CYCLES: %lu\n", cycles) ;
