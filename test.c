@@ -376,7 +376,7 @@ static int test_xcrypt_ctr(const char* xcrypt)
   
     printf("CTR %s: \n", xcrypt);
 
-    time_stop = (double) _rdtsc();
+    time_stop = (double) _rdtsc() - time_start;
     cycles = (time_stop - time_start);
     printf("START: %lu\n", time_start);
     printf("STOP: %lu\n", time_stop);
