@@ -1,5 +1,4 @@
 
-#include "sys/etimer.h"
 #include "sys/ctimer.h"
 #include "sys/clock.h"
 #include "tiny-AES128-C/aes.c"
