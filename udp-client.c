@@ -108,8 +108,8 @@ static void test_time(){
     AES_init_ctx(&ctx, key);
 
 
-    printf ("Size : %d\n", PAYLOADSIZE) ;
-    dump(out, SIZE);
+    //printf ("Size : %d\n", PAYLOADSIZE) ;
+    //dump(out, SIZE);
 
 
     time_start = RTIMER_NOW() ;
