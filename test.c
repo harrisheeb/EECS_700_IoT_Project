@@ -42,9 +42,7 @@ void dump( uint8_t * str , unsigned long m_size){
 }
 
 static void test_time(){
-    double time_start;
-    double time_stop;
-    double cycles;
+    
     struct AES_ctx ctx;
 
 
@@ -62,7 +60,9 @@ static void test_time(){
 
     //printf ("Size : %d\n", PAYLOADSIZE) ;
     //dump(out, SIZE);
-
+    double time_start;
+    double time_stop;
+    double cycles;
 
     time_start = (double) _rdtsc();
 
@@ -74,11 +74,9 @@ static void test_time(){
 	
     time_stop = (double) _rdtsc();
     cycles = ((double)time_stop - time_start);
-    printf("POST out: ");
-    dump(out, SIZE);
     printf("START: %lu\n", time_start);
     printf("STOP: %lu\n", time_stop);
-    printf ("cycles , rtimer second : %lu %d\n", cycles , SECOND) ;
+    printf ("CYCLES: %lu\n", cycles) ;
 }
 
 
@@ -187,10 +185,23 @@ static int test_encrypt_ecb(void)
     uint8_t in[]  = { 0x6b, 0xc1, 0xbe, 0xe2, 0x2e, 0x40, 0x9f, 0x96, 0xe9, 0x3d, 0x7e, 0x11, 0x73, 0x93, 0x17, 0x2a };
     struct AES_ctx ctx;
 
+    
     AES_init_ctx(&ctx, key);
+
+    double time_start;
+    double time_stop;
+    double cycles;
+
+    time_start = (double) _rdtsc();
     AES_ECB_encrypt(&ctx, in);
 
     printf("ECB encrypt: ");
+
+    time_stop = (double) _rdtsc();
+    cycles = ((double)time_stop - time_start);
+    printf("START: %lu\n", time_start);
+    printf("STOP: %lu\n", time_stop);
+    printf ("CYCLES: %lu\n", cycles) ;
 
     if (0 == memcmp((char*) out, (char*) in, 16)) {
         printf("SUCCESS!\n");
@@ -233,9 +244,21 @@ static int test_decrypt_cbc(void)
     struct AES_ctx ctx;
 
     AES_init_ctx_iv(&ctx, key, iv);
+
+    double time_start;
+    double time_stop;
+    double cycles;
+
+    time_start = (double) _rdtsc();
     AES_CBC_decrypt_buffer(&ctx, in, 64);
 
     printf("CBC decrypt: ");
+
+    time_stop = (double) _rdtsc();
+    cycles = ((double)time_stop - time_start);
+    printf("START: %lu\n", time_start);
+    printf("STOP: %lu\n", time_stop);
+    printf ("CYCLES: %lu\n", cycles) ;
 
     if (0 == memcmp((char*) out, (char*) in, 64)) {
         printf("SUCCESS!\n");
@@ -276,9 +299,21 @@ static int test_encrypt_cbc(void)
     struct AES_ctx ctx;
 
     AES_init_ctx_iv(&ctx, key, iv);
+
+    double time_start;
+    double time_stop;
+    double cycles;
+
+    time_start = (double) _rdtsc();
     AES_CBC_encrypt_buffer(&ctx, in, 64);
 
     printf("CBC encrypt: ");
+
+    time_stop = (double) _rdtsc();
+    cycles = ((double)time_stop - time_start);
+    printf("START: %lu\n", time_start);
+    printf("STOP: %lu\n", time_stop);
+    printf ("CYCLES: %lu\n", cycles) ;
 
     if (0 == memcmp((char*) out, (char*) in, 64)) {
         printf("SUCCESS!\n");
@@ -331,9 +366,21 @@ static int test_xcrypt_ctr(const char* xcrypt)
     struct AES_ctx ctx;
     
     AES_init_ctx_iv(&ctx, key, iv);
+
+    double time_start;
+    double time_stop;
+    double cycles;
+
+    time_start = (double) _rdtsc();
     AES_CTR_xcrypt_buffer(&ctx, in, 64);
   
     printf("CTR %s: ", xcrypt);
+
+    time_stop = (double) _rdtsc();
+    cycles = ((double)time_stop - time_start);
+    printf("START: %lu\n", time_start);
+    printf("STOP: %lu\n", time_stop);
+    printf ("CYCLES: %lu\n", cycles) ;
   
     if (0 == memcmp((char *) out, (char *) in, 64)) {
         printf("SUCCESS!\n");
@@ -364,9 +411,21 @@ static int test_decrypt_ecb(void)
     struct AES_ctx ctx;
     
     AES_init_ctx(&ctx, key);
+
+    double time_start;
+    double time_stop;
+    double cycles;
+
+    time_start = (double) _rdtsc();
     AES_ECB_decrypt(&ctx, in);
 
     printf("ECB decrypt: ");
+
+    time_stop = (double) _rdtsc();
+    cycles = ((double)time_stop - time_start);
+    printf("START: %lu\n", time_start);
+    printf("STOP: %lu\n", time_stop);
+    printf ("CYCLES: %lu\n", cycles) ;
 
     if (0 == memcmp((char*) out, (char*) in, 16)) {
         printf("SUCCESS!\n");
