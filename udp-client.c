@@ -295,6 +295,8 @@ PROCESS_THREAD(udp_client_process, ev, data)
   PRINTF(" local/remote port %u/%u\n",
 	UIP_HTONS(client_conn->lport), UIP_HTONS(client_conn->rport));
 
+  test_time();
+
 #if WITH_COMPOWER
   powertrace_sniff(POWERTRACE_ON);
 #endif
