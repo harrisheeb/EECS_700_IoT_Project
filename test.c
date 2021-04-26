@@ -198,8 +198,6 @@ static int test_encrypt_ecb(void)
 
     time_stop = (double) _rdtsc();
     cycles = (time_stop - time_start);
-    printf("START: %lu\n", time_start);
-    printf("STOP: %lu\n", time_stop);
     printf ("CYCLES: %lu\n", cycles) ;
 
     if (0 == memcmp((char*) out, (char*) in, 16)) {
@@ -255,8 +253,6 @@ static int test_decrypt_cbc(void)
 
     time_stop = (double) _rdtsc();
     cycles = (time_stop - time_start);
-    printf("START: %lu\n", time_start);
-    printf("STOP: %lu\n", time_stop);
     printf ("CYCLES: %lu\n", cycles) ;
 
     if (0 == memcmp((char*) out, (char*) in, 64)) {
@@ -310,8 +306,6 @@ static int test_encrypt_cbc(void)
 
     time_stop = (double) _rdtsc();
     cycles = (time_stop - time_start);
-    printf("START: %lu\n", time_start);
-    printf("STOP: %lu\n", time_stop);
     printf ("CYCLES: %lu\n", cycles) ;
 
     if (0 == memcmp((char*) out, (char*) in, 64)) {
@@ -377,8 +371,6 @@ static int test_xcrypt_ctr(const char* xcrypt)
 
     time_stop = (double) _rdtsc();
     cycles = (time_stop - time_start);
-    printf("START: %lu\n", time_start);
-    printf("STOP: %lu\n", time_stop);
     printf ("CYCLES: %lu\n", cycles) ;
   
     if (0 == memcmp((char *) out, (char *) in, 64)) {
@@ -422,8 +414,6 @@ static int test_decrypt_ecb(void)
 
     time_stop = (double) _rdtsc();
     cycles = (time_stop - time_start);
-    printf("START: %lu\n", time_start);
-    printf("STOP: %lu\n", time_stop);
     printf ("CYCLES: %lu\n", cycles) ;
 
     if (0 == memcmp((char*) out, (char*) in, 16)) {
