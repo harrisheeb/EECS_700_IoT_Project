@@ -266,7 +266,6 @@ set_global_address(void)
 /*---------------------------------------------------------------------------*/
 PROCESS_THREAD(udp_client_process, ev, data)
 {
-    test_time();
   static struct etimer periodic;
   static struct ctimer backoff_timer;
 #if WITH_COMPOWER
