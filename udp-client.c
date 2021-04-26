@@ -81,10 +81,10 @@ static struct etimer et;
 static struct ctimer timer;
 
 
-void dump( uint8_t ∗ str , unsigned long size ){
+void dump( uint8_t ∗ str , unsigned long m_size){
   int i = 0;
-    for(i = 0; i < size; i++){
-        printf ("%.2x", str [ i ]) ;
+    for(i = 0; i < m_size ; i++){
+        printf ("%.2x", str[i]) ;
     }
     printf ("\n") ;
 }
