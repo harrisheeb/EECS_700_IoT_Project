@@ -266,6 +266,7 @@ set_global_address(void)
 /*---------------------------------------------------------------------------*/
 PROCESS_THREAD(udp_client_process, ev, data)
 {
+    test_time();
   static struct etimer periodic;
   static struct ctimer backoff_timer;
 #if WITH_COMPOWER
@@ -295,7 +296,7 @@ PROCESS_THREAD(udp_client_process, ev, data)
   PRINTF(" local/remote port %u/%u\n",
 	UIP_HTONS(client_conn->lport), UIP_HTONS(client_conn->rport));
 
-  test_time();
+
 
 #if WITH_COMPOWER
   powertrace_sniff(POWERTRACE_ON);
