@@ -112,7 +112,7 @@ static void test_time(){
     dump(out, SIZE);
 
 
-    time_start = RTIMERNOW() ;
+    time_start = RTIMER_NOW() ;
 
     uint16_t TRIALS = 100;
     int i = 0;
@@ -120,7 +120,7 @@ static void test_time(){
         AES_CBC_encrypt_buffer(&ctx, in, SIZE);
     }
 
-    time_stop = RTIMERNOW() ;
+    time_stop = RTIMER_NOW() ;
     cycles = time_stop - time_start;
     printf("POST out: ");
     dump(out, SIZE);
