@@ -80,14 +80,15 @@ static uip_ipaddr_t server_ipaddr;
 static struct etimer et;
 static struct ctimer timer;
 
-volatile bool status = false;
 
 void dump( uint8_t ∗ str , unsigned long size ){
-    for(int i = 0; i < size; i++){
+  int i = 0;
+    for(i = 0; i < size; i++){
         printf ("%.2x", str [ i ]) ;
     }
     printf ("\n") ;
 }
+
 static void test_time(){
     unsigned long time_start;
     unsigned long time_stop;
