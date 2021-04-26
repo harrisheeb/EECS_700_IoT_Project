@@ -188,9 +188,9 @@ static int test_encrypt_ecb(void)
     
     AES_init_ctx(&ctx, key);
 
-    double time_start;
-    double time_stop;
-    double cycles;
+    unsigned long long time_start;
+    unsigned long long time_stop;
+    unsigned long long cycles;
 
     time_start = (double) _rdtsc();
     AES_ECB_encrypt(&ctx, in);
@@ -245,9 +245,9 @@ static int test_decrypt_cbc(void)
 
     AES_init_ctx_iv(&ctx, key, iv);
 
-    double time_start;
-    double time_stop;
-    double cycles;
+    unsigned long long time_start;
+    unsigned long long time_stop;
+    unsigned long long cycles;
 
     time_start = (double) _rdtsc();
     AES_CBC_decrypt_buffer(&ctx, in, 64);
@@ -300,9 +300,9 @@ static int test_encrypt_cbc(void)
 
     AES_init_ctx_iv(&ctx, key, iv);
 
-    double time_start;
-    double time_stop;
-    double cycles;
+    unsigned long long time_start;
+    unsigned long long time_stop;
+    unsigned long long cycles;
 
     time_start = (double) _rdtsc();
     AES_CBC_encrypt_buffer(&ctx, in, 64);
@@ -367,16 +367,16 @@ static int test_xcrypt_ctr(const char* xcrypt)
     
     AES_init_ctx_iv(&ctx, key, iv);
 
-    double time_start;
-    double time_stop;
-    double cycles;
+    unsigned long long time_start;
+    unsigned long long time_stop;
+    unsigned long long cycles;
 
     time_start = (double) _rdtsc();
     AES_CTR_xcrypt_buffer(&ctx, in, 64);
   
     printf("CTR %s: \n", xcrypt);
 
-    time_stop = (double) _rdtsc() - time_start;
+    time_stop = (double) _rdtsc();
     cycles = (time_stop - time_start);
     printf("START: %lu\n", time_start);
     printf("STOP: %lu\n", time_stop);
@@ -412,9 +412,9 @@ static int test_decrypt_ecb(void)
     
     AES_init_ctx(&ctx, key);
 
-    double time_start;
-    double time_stop;
-    double cycles;
+    unsigned long long time_start;
+    unsigned long long time_stop;
+    unsigned long long cycles;
 
     time_start = (double) _rdtsc();
     AES_ECB_decrypt(&ctx, in);
