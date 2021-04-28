@@ -12,12 +12,12 @@
 
 
 static void phex(uint8_t* str);
-static int test_encrypt_cbc(void);
-static int test_decrypt_cbc(void);
-static int test_encrypt_ctr(void);
-static int test_decrypt_ctr(void);
+static unsigned long long test_encrypt_cbc(void);
+static unsigned long long test_decrypt_cbc(void);
+static unsigned long long test_encrypt_ctr(void);
+static unsigned long long test_decrypt_ctr(void);
 static unsigned long long test_encrypt_ecb(void);
-static int test_decrypt_ecb(void);
+static unsigned long long test_decrypt_ecb(void);
 static void test_encrypt_ecb_verbose(void);
 
 
@@ -86,12 +86,12 @@ static void test_time(){
 int main(void)
 {
     int exit;
-    unsigned long long cbc_data_encrypt[3][100];
-    unsigned long long cbc_data_dencrypt[3][100];
-    unsigned long long ctr_data_encrypt[3][100];
-    unsigned long long ctr_data_dencrypt[3][100];
-    unsigned long long ecb_data_encrypt[3][100];
-    unsigned long long ecb_data_dencrypt[3][100];
+    unsigned long long cbc_data_encrypt[100];
+    unsigned long long cbc_data_dencrypt[100];
+    unsigned long long ctr_data_encrypt[100];
+    unsigned long long ctr_data_dencrypt[100];
+    unsigned long long ecb_data_encrypt[100];
+    unsigned long long ecb_data_dencrypt[100];
 
 #if defined(AES256)
     printf("\nTesting AES256\n\n");
@@ -105,9 +105,16 @@ int main(void)
 #endif
     int i = 0;
     for (i = 0; i < 100; i++){
-        exit = test_encrypt_cbc() + test_decrypt_cbc() +
-        test_encrypt_ctr() + test_decrypt_ctr() +
-        test_decrypt_ecb() + test_encrypt_ecb();
+        cbc_data_encrypt[i] = test_encrypt_cbc();
+        cbc_data_dencrypt[i] = test_decrypt_cbc();
+        ctr_data_encrypt[i] = test_encrypt_ctr();
+        ctr_data_dencrypt[i] = test_decrypt_ctr();
+        ecb_data_encrypt[i] = test_encrypt_ecb();
+        ecb_data_dencrypt[i] = test_decrypt_ecb();
+
+        //exit = test_encrypt_cbc() + test_decrypt_cbc() +
+        //test_encrypt_ctr() + test_decrypt_ctr() +
+        //test_decrypt_ecb() + test_encrypt_ecb();
         test_encrypt_ecb_verbose();
     }
     
@@ -219,7 +226,7 @@ static unsigned long long test_encrypt_ecb(void)
     }
 }
 
-static int test_decrypt_cbc(void)
+static unsigned long long test_decrypt_cbc(void)
 {
 
 #if defined(AES256)
@@ -267,14 +274,14 @@ static int test_decrypt_cbc(void)
 
     if (0 == memcmp((char*) out, (char*) in, 64)) {
         printf("SUCCESS!\n");
-	return(0);
+	return(cycles);
     } else {
         printf("FAILURE!\n");
-	return(1);
+	return(-1);
     }
 }
 
-static int test_encrypt_cbc(void)
+static unsigned long long test_encrypt_cbc(void)
 {
 #if defined(AES256)
     uint8_t key[] = { 0x60, 0x3d, 0xeb, 0x10, 0x15, 0xca, 0x71, 0xbe, 0x2b, 0x73, 0xae, 0xf0, 0x85, 0x7d, 0x77, 0x81,
@@ -320,25 +327,25 @@ static int test_encrypt_cbc(void)
 
     if (0 == memcmp((char*) out, (char*) in, 64)) {
         printf("SUCCESS!\n");
-	return(0);
+	return(cycles);
     } else {
         printf("FAILURE!\n");
-	return(1);
+	return(-1);
     }
 }
 
-static int test_xcrypt_ctr(const char* xcrypt);
-static int test_encrypt_ctr(void)
+static unsigned long long test_xcrypt_ctr(const char* xcrypt);
+static unsigned long long test_encrypt_ctr(void)
 {
     return test_xcrypt_ctr("encrypt");
 }
 
-static int test_decrypt_ctr(void)
+static unsigned long long test_decrypt_ctr(void)
 {
     return test_xcrypt_ctr("decrypt");
 }
 
-static int test_xcrypt_ctr(const char* xcrypt)
+static unsigned long long test_xcrypt_ctr(const char* xcrypt)
 {
 #if defined(AES256)
     uint8_t key[32] = { 0x60, 0x3d, 0xeb, 0x10, 0x15, 0xca, 0x71, 0xbe, 0x2b, 0x73, 0xae, 0xf0, 0x85, 0x7d, 0x77, 0x81,
@@ -385,15 +392,15 @@ static int test_xcrypt_ctr(const char* xcrypt)
   
     if (0 == memcmp((char *) out, (char *) in, 64)) {
         printf("SUCCESS!\n");
-	return(0);
+	return(cycles);
     } else {
         printf("FAILURE!\n");
-	return(1);
+	return(-1);
     }
 }
 
 
-static int test_decrypt_ecb(void)
+static unsigned long long test_decrypt_ecb(void)
 {
 #if defined(AES256)
     uint8_t key[] = { 0x60, 0x3d, 0xeb, 0x10, 0x15, 0xca, 0x71, 0xbe, 0x2b, 0x73, 0xae, 0xf0, 0x85, 0x7d, 0x77, 0x81,
@@ -428,10 +435,10 @@ static int test_decrypt_ecb(void)
 
     if (0 == memcmp((char*) out, (char*) in, 16)) {
         printf("SUCCESS!\n");
-	return(0);
+	return(cycles);
     } else {
         printf("FAILURE!\n");
-	return(1);
+	return(-1);
     }
 }
 
