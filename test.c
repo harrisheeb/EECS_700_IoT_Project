@@ -127,6 +127,7 @@ int main(void)
     }
     float averages[6];
     for (i = 0; i < 3; i++){
+        printf ("summing average cbc: %.2f\n", averages[0]) ;
         averages[0] = averages[0] + (float) (cbc_data_encrypt[i]);
         averages[1] = averages[1] + (float) (cbc_data_dencrypt[i]);
         averages[2] = averages[2] + (float) (ctr_data_encrypt[i]);
