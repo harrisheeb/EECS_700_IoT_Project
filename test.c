@@ -140,11 +140,11 @@ int main(void)
         averages[5] = averages[5] + (float) (ecb_data_dencrypt[i]);
 
     }
-/*
+
     for (i = 0; i < 6; i++){
         averages[i] = averages[i]/1000;
     }
-
+/*
     printf ("CBC Encrypt Average: %.2f\n", averages[0]) ;
     printf ("CBC Decrypt Average: %.2f\n", averages[1]) ;
     printf ("CTR Encrypt Average: %.2f\n", averages[2]) ;
