@@ -144,14 +144,14 @@ int main(void)
     for (i = 0; i < 6; i++){
         averages[i] = averages[i]/1000;
     }
-/*
+
     printf ("CBC Encrypt Average: %.2f\n", averages[0]) ;
     printf ("CBC Decrypt Average: %.2f\n", averages[1]) ;
     printf ("CTR Encrypt Average: %.2f\n", averages[2]) ;
     printf ("CTR Decrypt Average: %.2f\n", averages[3]) ;
     printf ("ECB Encrypt Average: %.2f\n", averages[4]) ;
     printf ("ECB Decrypt Average: %.2f\n", averages[5]) ;
-*/
+
     return 0;
 }
 
