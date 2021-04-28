@@ -134,6 +134,13 @@ int main(void)
         printf ("average: %lu\n", averages[i]) ;
 
     }
+    unsigned long long ull;
+
+    ull = (1ULL << 53) - 1;
+    printf("%llu %f\n", ull, (double)ull);
+
+    ull = (1ULL << 53) + 1;
+    printf("%llu %f\n", ull, (double)ull);
 
     return 0;
 }
