@@ -96,7 +96,8 @@ tcpip_handler(void)
       m_string[i] = ' ';
     }
     printf("%s", m_string);
-
+    fp = fopen("textFile.txt" ,"a");
+    fprintf(fp, "Change Case \n");
 
 
     PRINTF("\n");
