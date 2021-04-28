@@ -94,12 +94,12 @@ long double ltod(unsigned long long m_long){
 int main(void)
 {
     int exit;
-    unsigned long long cbc_data_encrypt[500];
-    unsigned long long cbc_data_dencrypt[500];
-    unsigned long long ctr_data_encrypt[500];
-    unsigned long long ctr_data_dencrypt[500];
-    unsigned long long ecb_data_encrypt[500];
-    unsigned long long ecb_data_dencrypt[500];
+    unsigned long long cbc_data_encrypt[100];
+    unsigned long long cbc_data_dencrypt[100];
+    unsigned long long ctr_data_encrypt[100];
+    unsigned long long ctr_data_dencrypt[100];
+    unsigned long long ecb_data_encrypt[100];
+    unsigned long long ecb_data_dencrypt[100];
 
 #if defined(AES256)
     printf("\nTesting AES256\n\n");
@@ -112,7 +112,7 @@ int main(void)
     return 0;
 #endif
     int i = 0;
-    for (i = 0; i < 500; i++){
+    for (i = 0; i < 100; i++){
         cbc_data_encrypt[i] = test_encrypt_cbc();
         cbc_data_dencrypt[i] = test_decrypt_cbc();
         ctr_data_encrypt[i] = test_encrypt_ctr();
@@ -126,10 +126,10 @@ int main(void)
         test_encrypt_ecb_verbose();
     }
     float averages[6];
-    for(i = 0; i < 500; i++){
+    for(i = 0; i < 100; i++){
         averages[i] = 0;
     }
-    for (i = 0; i < 500; i++){
+    for (i = 0; i < 100; i++){
         
         averages[0] = averages[0] + (float) (cbc_data_encrypt[i]);
         averages[1] = averages[1] + (float) (cbc_data_dencrypt[i]);
@@ -141,7 +141,7 @@ int main(void)
     }
 
     for (i = 0; i < 6; i++){
-        averages[i] = averages[i]/500;
+        averages[i] = averages[i]/100;
     }
 
     printf ("CBC Encrypt Average: %.2f\n", averages[0]) ;
