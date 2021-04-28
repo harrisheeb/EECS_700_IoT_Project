@@ -137,12 +137,10 @@ int main(void)
     }
 
     for (i = 0; i < 6; i++){
-        printf ("average: %.6f\n", averages[i]) ;
         averages[i] = averages[i]/100;
         printf ("average: %.6f\n", averages[i]) ;
 
     }
-    printf ("average: %.6f\n", (float) cbc_data_encrypt[0]) ;
 
     return 0;
 }
