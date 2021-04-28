@@ -127,6 +127,9 @@ int main(void)
         test_encrypt_ecb_verbose();
     }
     float averages[6];
+    for(i = 0; i < 3; i++){
+        averages[i] = 0;
+    }
     for (i = 0; i < 3; i++){
         
         averages[0] = averages[0] + (float) (cbc_data_encrypt[i]);
