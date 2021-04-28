@@ -125,12 +125,12 @@ int main(void)
         //test_decrypt_ecb() + test_encrypt_ecb();
         test_encrypt_ecb_verbose();
     }
-    /*
-    float averages[6];
-    for(i = 0; i < 100; i++){
+    
+    long float averages[6];
+    for(i = 0; i < 1000; i++){
         averages[i] = 0;
     }
-    for (i = 0; i < 100; i++){
+    for (i = 0; i < 1000; i++){
         
         averages[0] = averages[0] + (float) (cbc_data_encrypt[i]);
         averages[1] = averages[1] + (float) (cbc_data_dencrypt[i]);
@@ -142,7 +142,7 @@ int main(void)
     }
 
     for (i = 0; i < 6; i++){
-        averages[i] = averages[i]/100;
+        averages[i] = averages[i]/1000;
     }
 
     printf ("CBC Encrypt Average: %.2f\n", averages[0]) ;
