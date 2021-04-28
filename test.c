@@ -12,12 +12,12 @@
 
 
 static void phex(uint8_t* str);
-static unsigned long long test_encrypt_cbc(void);
-static unsigned long long test_decrypt_cbc(void);
-static unsigned long long test_encrypt_ctr(void);
-static unsigned long long test_decrypt_ctr(void);
-static unsigned long long test_encrypt_ecb(void);
-static unsigned long long test_decrypt_ecb(void);
+long double test_encrypt_cbc(void);
+long double test_decrypt_cbc(void);
+long double test_encrypt_ctr(void);
+long double test_decrypt_ctr(void);
+long double test_encrypt_ecb(void);
+long double test_decrypt_ecb(void);
 static void test_encrypt_ecb_verbose(void);
 
 
@@ -86,12 +86,12 @@ static void test_time(){
 int main(void)
 {
     int exit;
-    unsigned long long cbc_data_encrypt[100];
-    unsigned long long cbc_data_dencrypt[100];
-    unsigned long long ctr_data_encrypt[100];
-    unsigned long long ctr_data_dencrypt[100];
-    unsigned long long ecb_data_encrypt[100];
-    unsigned long long ecb_data_dencrypt[100];
+    long double cbc_data_encrypt[100];
+    long double cbc_data_dencrypt[100];
+    long double ctr_data_encrypt[100];
+    long double ctr_data_dencrypt[100];
+    long double ecb_data_encrypt[100];
+    long double ecb_data_dencrypt[100];
 
 #if defined(AES256)
     printf("\nTesting AES256\n\n");
@@ -117,7 +117,7 @@ int main(void)
         //test_decrypt_ecb() + test_encrypt_ecb();
         test_encrypt_ecb_verbose();
     }
-    unsigned long long averages[6];
+    long double averages[6];
     for (i = 0; i < 100; i++){
         averages[0] = averages[0] + cbc_data_encrypt[i];
         averages[1] = averages[1] + cbc_data_dencrypt[i];
@@ -199,7 +199,7 @@ static void test_encrypt_ecb_verbose(void)
 }
 
 
-static unsigned long long test_encrypt_ecb(void)
+long double test_encrypt_ecb(void)
 {
 #if defined(AES256)
     uint8_t key[] = { 0x60, 0x3d, 0xeb, 0x10, 0x15, 0xca, 0x71, 0xbe, 0x2b, 0x73, 0xae, 0xf0, 0x85, 0x7d, 0x77, 0x81,
@@ -220,9 +220,9 @@ static unsigned long long test_encrypt_ecb(void)
     
     AES_init_ctx(&ctx, key);
 
-    unsigned long long time_start;
-    unsigned long long time_stop;
-    unsigned long long cycles;
+    long double time_start;
+    long double time_stop;
+    long double cycles;
 
     time_start = (double) _rdtsc();
     AES_ECB_encrypt(&ctx, in);
@@ -242,7 +242,7 @@ static unsigned long long test_encrypt_ecb(void)
     }
 }
 
-static unsigned long long test_decrypt_cbc(void)
+long double test_decrypt_cbc(void)
 {
 
 #if defined(AES256)
@@ -275,9 +275,9 @@ static unsigned long long test_decrypt_cbc(void)
 
     AES_init_ctx_iv(&ctx, key, iv);
 
-    unsigned long long time_start;
-    unsigned long long time_stop;
-    unsigned long long cycles;
+    long double time_start;
+    long double time_stop;
+    long double cycles;
 
     time_start = (double) _rdtsc();
     AES_CBC_decrypt_buffer(&ctx, in, 64);
@@ -297,7 +297,7 @@ static unsigned long long test_decrypt_cbc(void)
     }
 }
 
-static unsigned long long test_encrypt_cbc(void)
+long double test_encrypt_cbc(void)
 {
 #if defined(AES256)
     uint8_t key[] = { 0x60, 0x3d, 0xeb, 0x10, 0x15, 0xca, 0x71, 0xbe, 0x2b, 0x73, 0xae, 0xf0, 0x85, 0x7d, 0x77, 0x81,
@@ -328,9 +328,9 @@ static unsigned long long test_encrypt_cbc(void)
 
     AES_init_ctx_iv(&ctx, key, iv);
 
-    unsigned long long time_start;
-    unsigned long long time_stop;
-    unsigned long long cycles;
+    long double time_start;
+    long double time_stop;
+    long double cycles;
 
     time_start = (double) _rdtsc();
     AES_CBC_encrypt_buffer(&ctx, in, 64);
@@ -350,18 +350,18 @@ static unsigned long long test_encrypt_cbc(void)
     }
 }
 
-static unsigned long long test_xcrypt_ctr(const char* xcrypt);
-static unsigned long long test_encrypt_ctr(void)
+long double test_xcrypt_ctr(const char* xcrypt);
+long double test_encrypt_ctr(void)
 {
     return test_xcrypt_ctr("encrypt");
 }
 
-static unsigned long long test_decrypt_ctr(void)
+long double test_decrypt_ctr(void)
 {
     return test_xcrypt_ctr("decrypt");
 }
 
-static unsigned long long test_xcrypt_ctr(const char* xcrypt)
+long double test_xcrypt_ctr(const char* xcrypt)
 {
 #if defined(AES256)
     uint8_t key[32] = { 0x60, 0x3d, 0xeb, 0x10, 0x15, 0xca, 0x71, 0xbe, 0x2b, 0x73, 0xae, 0xf0, 0x85, 0x7d, 0x77, 0x81,
@@ -393,9 +393,9 @@ static unsigned long long test_xcrypt_ctr(const char* xcrypt)
     
     AES_init_ctx_iv(&ctx, key, iv);
 
-    unsigned long long time_start;
-    unsigned long long time_stop;
-    unsigned long long cycles;
+    long double time_start;
+    long double time_stop;
+    long double cycles;
 
     time_start = (double) _rdtsc();
     AES_CTR_xcrypt_buffer(&ctx, in, 64);
@@ -416,7 +416,7 @@ static unsigned long long test_xcrypt_ctr(const char* xcrypt)
 }
 
 
-static unsigned long long test_decrypt_ecb(void)
+long double test_decrypt_ecb(void)
 {
 #if defined(AES256)
     uint8_t key[] = { 0x60, 0x3d, 0xeb, 0x10, 0x15, 0xca, 0x71, 0xbe, 0x2b, 0x73, 0xae, 0xf0, 0x85, 0x7d, 0x77, 0x81,
@@ -436,9 +436,9 @@ static unsigned long long test_decrypt_ecb(void)
     
     AES_init_ctx(&ctx, key);
 
-    unsigned long long time_start;
-    unsigned long long time_stop;
-    unsigned long long cycles;
+    long double time_start;
+    long double time_stop;
+    long double cycles;
 
     time_start = (double) _rdtsc();
     AES_ECB_decrypt(&ctx, in);
