@@ -123,7 +123,7 @@ int main(void)
         //exit = test_encrypt_cbc() + test_decrypt_cbc() +
         //test_encrypt_ctr() + test_decrypt_ctr() +
         //test_decrypt_ecb() + test_encrypt_ecb();
-        test_encrypt_ecb_verbose();
+        //test_encrypt_ecb_verbose();
     }
     float averages[6];
     for(i = 0; i < 200; i++){
