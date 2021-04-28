@@ -127,7 +127,7 @@ int main(void)
     }
     
     float averages[6];
-    for(i = 0; i < 1000; i++){
+    for(i = 0; i < 6; i++){
         averages[i] = 0;
     }
     for (i = 0; i < 1000; i++){
