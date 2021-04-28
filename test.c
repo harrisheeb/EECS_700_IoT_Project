@@ -16,7 +16,7 @@ static int test_encrypt_cbc(void);
 static int test_decrypt_cbc(void);
 static int test_encrypt_ctr(void);
 static int test_decrypt_ctr(void);
-static int test_encrypt_ecb(void);
+static unsigned long long test_encrypt_ecb(void);
 static int test_decrypt_ecb(void);
 static void test_encrypt_ecb_verbose(void);
 
