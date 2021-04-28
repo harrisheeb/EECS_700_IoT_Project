@@ -129,6 +129,7 @@ int main(void)
     }
 
     for (i = 0; i < 6; i++){
+        printf ("average before: %lu\n", averages[i]) ;
         averages[i] = averages[i]/100;
         printf ("average: %lu\n", averages[i]) ;
 
