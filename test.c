@@ -126,7 +126,7 @@ int main(void)
         test_encrypt_ecb_verbose();
     }
     
-    long float averages[6];
+    float averages[6];
     for(i = 0; i < 1000; i++){
         averages[i] = 0;
     }
@@ -140,7 +140,7 @@ int main(void)
         averages[5] = averages[5] + (float) (ecb_data_dencrypt[i]);
 
     }
-
+/*
     for (i = 0; i < 6; i++){
         averages[i] = averages[i]/1000;
     }
