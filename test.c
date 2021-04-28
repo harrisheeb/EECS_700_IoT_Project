@@ -117,7 +117,22 @@ int main(void)
         //test_decrypt_ecb() + test_encrypt_ecb();
         test_encrypt_ecb_verbose();
     }
-    int 
+    unsigned long long averages[6];
+    for (i = 0; i < 100; i++){
+        averages[0] = averages[0] + cbc_data_encrypt[i];
+        averages[1] = averages[1] + cbc_data_dencrypt[i];
+        averages[2] = averages[2] + ctr_data_encrypt[i];
+        averages[3] = averages[3] + ctr_data_dencrypt[i];
+        averages[4] = averages[4] + ecb_data_encrypt[i];
+        averages[5] = averages[5] + ecb_data_dencrypt[i];
+
+    }
+
+    for (i = 0; i < 6; i++){
+        averages[i] = averages[i]/100.0;
+        printf ("average: %lu\n", averages[i]) ;
+
+    }
 
     return 0;
 }
