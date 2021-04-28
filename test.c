@@ -138,7 +138,7 @@ int main(void)
 
     for (i = 0; i < 6; i++){
         averages[i] = averages[i]/100;
-        printf ("average: %.2Lf\n", averages[i]) ;
+        printf ("average: %Lf\n", averages[i]) ;
 
     }
 
