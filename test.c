@@ -86,6 +86,12 @@ static void test_time(){
 int main(void)
 {
     int exit;
+    unsigned long long cbc_data_encrypt[3][100];
+    unsigned long long cbc_data_dencrypt[3][100];
+    unsigned long long ctr_data_encrypt[3][100];
+    unsigned long long ctr_data_dencrypt[3][100];
+    unsigned long long ecb_data_encrypt[3][100];
+    unsigned long long ecb_data_dencrypt[3][100];
 
 #if defined(AES256)
     printf("\nTesting AES256\n\n");
@@ -97,12 +103,16 @@ int main(void)
     printf("You need to specify a symbol between AES128, AES192 or AES256. Exiting");
     return 0;
 #endif
-    exit = test_encrypt_cbc() + test_decrypt_cbc() +
-	test_encrypt_ctr() + test_decrypt_ctr() +
-	test_decrypt_ecb() + test_encrypt_ecb();
-    test_encrypt_ecb_verbose();
+    int i = 0;
+    for (i = 0; i < 100; i++){
+        exit = test_encrypt_cbc() + test_decrypt_cbc() +
+        test_encrypt_ctr() + test_decrypt_ctr() +
+        test_decrypt_ecb() + test_encrypt_ecb();
+        test_encrypt_ecb_verbose();
+    }
+    
 
-    return exit;
+    return 0;
 }
 
 
