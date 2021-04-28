@@ -119,12 +119,12 @@ int main(void)
     }
     long double averages[6];
     for (i = 0; i < 100; i++){
-        averages[0] = averages[0] + (cbc_data_encrypt[i] << 53) - 1;
-        averages[1] = averages[1] + (cbc_data_dencrypt[i] << 53) - 1;
-        averages[2] = averages[2] + (ctr_data_encrypt[i] << 53) - 1;
-        averages[3] = averages[3] + (ctr_data_dencrypt[i] << 53) - 1;
-        averages[4] = averages[4] + (ecb_data_encrypt[i] << 53) - 1;
-        averages[5] = averages[5] + (ecb_data_dencrypt[i] << 53) - 1;
+        averages[0] = averages[0] + (double) ((cbc_data_encrypt[i] << 53) - 1);
+        averages[1] = averages[1] + (double) ((cbc_data_dencrypt[i] << 53) - 1);
+        averages[2] = averages[2] + (double) ((ctr_data_encrypt[i] << 53) - 1);
+        averages[3] = averages[3] + (double) ((ctr_data_dencrypt[i] << 53) - 1);
+        averages[4] = averages[4] + (double) ((ecb_data_encrypt[i] << 53) - 1);
+        averages[5] = averages[5] + (double) ((ecb_data_dencrypt[i] << 53) - 1);
 
     }
 
