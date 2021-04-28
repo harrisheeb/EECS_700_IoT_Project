@@ -146,11 +146,11 @@ int main(void)
     }
 
     printf ("CBC Encrypt Average: %f\n", averages[0]) ;
-    printf ("CBC Decrypt Average: %f\n", averages[1]) ;
-    printf ("CTR Encrypt Average: %f\n", averages[2]) ;
-    printf ("CTR Decrypt Average: %f\n", averages[3]) ;
-    printf ("ECB Encrypt Average: %f\n", averages[4]) ;
-    printf ("ECB Decrypt Average: %f\n", averages[5]) ;
+    //printf ("CBC Decrypt Average: %f\n", averages[1]) ;
+    //printf ("CTR Encrypt Average: %f\n", averages[2]) ;
+    //printf ("CTR Decrypt Average: %f\n", averages[3]) ;
+    //printf ("ECB Encrypt Average: %f\n", averages[4]) ;
+    //printf ("ECB Decrypt Average: %f\n", averages[5]) ;
 
     return 0;
 }
