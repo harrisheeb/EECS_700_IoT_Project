@@ -79,7 +79,15 @@ static void test_time(){
     printf ("CYCLES: %lu\n", cycles) ;
 }
 
+long double ltod(unsigned long long m_long){
+    unsigned long long ull;
+    ull = 
+    ull = (1ULL << 53) - 1;
+    printf("%llu %f\n", ull, (double)ull);
 
+    ull = (1ULL << 53) + 1;
+    printf("%llu %f\n", ull, (double)ull);
+}
 
 
 
@@ -117,14 +125,14 @@ int main(void)
         //test_decrypt_ecb() + test_encrypt_ecb();
         test_encrypt_ecb_verbose();
     }
-    long double averages[6];
+    float averages[6];
     for (i = 0; i < 100; i++){
-        averages[0] = averages[0] + (double) ((cbc_data_encrypt[i] << 53) - 1);
-        averages[1] = averages[1] + (double) ((cbc_data_dencrypt[i] << 53) - 1);
-        averages[2] = averages[2] + (double) ((ctr_data_encrypt[i] << 53) - 1);
-        averages[3] = averages[3] + (double) ((ctr_data_dencrypt[i] << 53) - 1);
-        averages[4] = averages[4] + (double) ((ecb_data_encrypt[i] << 53) - 1);
-        averages[5] = averages[5] + (double) ((ecb_data_dencrypt[i] << 53) - 1);
+        averages[0] = averages[0] + (float) (cbc_data_encrypt[i]);
+        averages[1] = averages[1] + (float) (cbc_data_dencrypt[i]);
+        averages[2] = averages[2] + (float) (ctr_data_encrypt[i]);
+        averages[3] = averages[3] + (float) (ctr_data_dencrypt[i]);
+        averages[4] = averages[4] + (float) (ecb_data_encrypt[i]);
+        averages[5] = averages[5] + (float) (ecb_data_dencrypt[i]);
 
     }
 
@@ -134,13 +142,7 @@ int main(void)
         printf ("average: %lu\n", averages[i]) ;
 
     }
-    unsigned long long ull;
-
-    ull = (1ULL << 53) - 1;
-    printf("%llu %f\n", ull, (double)ull);
-
-    ull = (1ULL << 53) + 1;
-    printf("%llu %f\n", ull, (double)ull);
+    
 
     return 0;
 }
