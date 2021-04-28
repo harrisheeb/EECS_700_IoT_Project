@@ -166,7 +166,7 @@ static void test_encrypt_ecb_verbose(void)
 }
 
 
-static int test_encrypt_ecb(void)
+static unsigned long long test_encrypt_ecb(void)
 {
 #if defined(AES256)
     uint8_t key[] = { 0x60, 0x3d, 0xeb, 0x10, 0x15, 0xca, 0x71, 0xbe, 0x2b, 0x73, 0xae, 0xf0, 0x85, 0x7d, 0x77, 0x81,
@@ -202,10 +202,10 @@ static int test_encrypt_ecb(void)
 
     if (0 == memcmp((char*) out, (char*) in, 16)) {
         printf("SUCCESS!\n");
-	return(0);
+	return(cycles);
     } else {
         printf("FAILURE!\n");
-	return(1);
+	return(-1);
     }
 }
 
