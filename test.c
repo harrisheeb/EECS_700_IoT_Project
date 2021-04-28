@@ -114,6 +114,7 @@ int main(void)
     int i = 0;
     for (i = 0; i < 3; i++){
         cbc_data_encrypt[i] = test_encrypt_cbc();
+        printf ("MY CYCLES: %lu\n", cbc_data_encrypt[i]) ;
         cbc_data_dencrypt[i] = test_decrypt_cbc();
         ctr_data_encrypt[i] = test_encrypt_ctr();
         ctr_data_dencrypt[i] = test_decrypt_ctr();
