@@ -159,7 +159,12 @@ int main(void)
     for (i = 0; i < 6; i++){
         averages[i] = averages[i]/1000;
     }
+
     float standard_deviations[6];
+
+    for(i = 0; i < 6; i++){
+        standard_deviations[i] = 0;
+    }
 
     for(i = 0; i < 1000; i++){
         new_data_cbc_e[i] = new_data_cbc_e[i] - averages[0];
