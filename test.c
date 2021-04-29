@@ -203,6 +203,14 @@ int main(void)
     printf ("ECB Encrypt Average: %.2f\n", averages[4]) ;
     printf ("ECB Decrypt Average: %.2f\n", averages[5]) ;
 
+    fflush(stdout); 
+    printf ("\nCBC Encrypt Standard Deviation: %.2f\n", standard_deviations[0]) ;
+    printf ("CBC Decrypt Standard Deviation: %.2f\n", standard_deviations[1]) ;
+    printf ("CTR Encrypt Standard Deviation: %.2f\n", standard_deviations[2]) ;
+    printf ("CTR Decrypt Standard Deviation: %.2f\n", standard_deviations[3]) ;
+    printf ("ECB Encrypt Standard Deviation: %.2f\n", standard_deviations[4]) ;
+    printf ("ECB Decrypt Standard Deviation: %.2f\n", standard_deviations[5]) ;
+
     return 0;
 }
 
