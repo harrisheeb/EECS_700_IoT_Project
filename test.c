@@ -20,7 +20,7 @@ static unsigned long long test_encrypt_ecb(void);
 static unsigned long long test_decrypt_ecb(void);
 static void test_encrypt_ecb_verbose(void);
 
-
+#include <math.h>
 #include <stdio.h>
 #include <stdint.h>
 #include <time.h>
@@ -127,6 +127,14 @@ int main(void)
     }
     
     float averages[6];
+
+    float new_data_cbc_e[1000];
+    float new_data_cbc_d[1000];
+    float new_data_ctr_e[1000];
+    float new_data_ctr_d[1000];
+    float new_data_ecb_e[1000];
+    float new_data_ecv_d[1000];
+
     for(i = 0; i < 6; i++){
         averages[i] = 0;
     }
@@ -139,11 +147,54 @@ int main(void)
         averages[4] = averages[4] + (float) (ecb_data_encrypt[i]);
         averages[5] = averages[5] + (float) (ecb_data_dencrypt[i]);
 
+        new_data_cbc_e[i] = (float) (cbc_data_encrypt[i]);
+        new_data_cbc_d[i] = (float) (cbc_data_dencrypt[i]);
+        new_data_ctr_e[i] = (float) (ctr_data_encrypt[i]);
+        new_data_ctr_d[i] = (float) (ctr_data_dencrypt[i]);
+        new_data_ecb_e[i] = (float) (ecb_data_encrypt[i]);
+        new_data_ecv_d[i] = (float) (ecb_data_dencrypt[i]);
+
     }
 
     for (i = 0; i < 6; i++){
         averages[i] = averages[i]/1000;
     }
+    float standard_deviations[6];
+
+    for(i = 0; i < 1000; i++){
+        new_data_cbc_e[i] = new_data_cbc_e[i] - averages[0];
+        new_data_cbc_e[i] = new_data_cbc_e[i] * new_data_cbc_e[i];
+        standard_deviations[0] = standard_deviations[0] + new_data_cbc_e[i];
+
+        new_data_cbc_d[i] = new_data_cbc_d[i] - averages[1];
+        new_data_cbc_d[i] = new_data_cbc_d[i] * new_data_cbc_d[i];
+        standard_deviations[1] = standard_deviations[1] + new_data_cbc_d[i];
+
+        new_data_ctr_e[i] = new_data_ctr_e[i] - averages[2];
+        new_data_ctr_e[i] = new_data_ctr_e[i] * new_data_ctr_e[i];
+        standard_deviations[2] = standard_deviations[2] + new_data_ctr_e[i];
+
+        new_data_ctr_d[i] = new_data_ctr_d[i] - averages[3];
+        new_data_ctr_d[i] = new_data_ctr_d[i] * new_data_ctr_d[i];
+        standard_deviations[3] = standard_deviations[3] + new_data_ctr_d[i];
+
+
+        new_data_ecb_e[i] = new_data_ecb_e[i] - averages[4];
+        new_data_ecb_e[i] = new_data_ecb_e[i] * new_data_ecb_e[i];
+        standard_deviations[4] = standard_deviations[4] + new_data_ecb_e[i];
+
+        new_data_ecv_d[i] = new_data_ecv_d[i] - averages[5];
+        new_data_ecv_d[i] = new_data_ecv_d[i] * new_data_ecv_d[i];
+        standard_deviations[5] = standard_deviations[5] + new_data_ecv_d[i];
+
+    }
+
+    for (i = 0; i < 6; i++){
+        standard_deviations[i] = standard_deviations[i]/1000;
+        standard_deviations[i] = sqrt(standard_deviations[i]);
+    }
+
+
     fflush(stdout); 
     printf ("CBC Encrypt Average: %.2f\n", averages[0]) ;
     printf ("CBC Decrypt Average: %.2f\n", averages[1]) ;
