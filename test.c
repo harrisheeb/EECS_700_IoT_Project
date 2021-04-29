@@ -191,7 +191,7 @@ int main(void)
 
     for (i = 0; i < 6; i++){
         standard_deviations[i] = standard_deviations[i]/1000;
-        standard_deviations[i] = sqrt(standard_deviations[i]);
+        //standard_deviations[i] = sqrt(standard_deviations[i]);
     }
 
 
